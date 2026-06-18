@@ -1,0 +1,80 @@
+import type { Metadata } from "next";
+import { fixelText, fixelDisplay } from "./fonts";
+import { site } from "@/lib/content";
+import StructuredData from "@/components/StructuredData";
+import "./globals.css";
+
+const title = "Купити квартиру в Ужгороді | ЖК Садовий квартал";
+const description =
+  "ЖК Садовий квартал - сучасний житловий квартал в Ужгороді на вул. Загорській, 211. 408 квартир, від $780/м², розтермінування до 36 місяців без першого внеску, газове опалення.";
+const ogDescription =
+  "Сучасний житловий квартал в Ужгороді. 408 квартир, від $780/м², розтермінування до 36 місяців без першого внеску.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: title,
+    template: "%s | ЖК Садовий квартал",
+  },
+  description,
+  keywords: [
+    "купити квартиру в Ужгороді",
+    "ЖК Садовий квартал",
+    "новобудова Ужгород",
+    "квартири Ужгород",
+    "квартира від забудовника Ужгород",
+    "розтермінування квартири Ужгород",
+    "новобудови Закарпаття",
+    "квартири вул. Загорська Ужгород",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "uk_UA",
+    url: site.url,
+    siteName: "ЖК Садовий квартал",
+    title,
+    description: ogDescription,
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ЖК Садовий квартал — сучасний житловий квартал в Ужгороді",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description: ogDescription,
+    images: ["/og.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  // Іконки беруться з конвенцій app/: icon.png, apple-icon.png, favicon.ico
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="uk">
+      <body className={`${fixelText.variable} ${fixelDisplay.variable} antialiased`}>
+        <StructuredData />
+        {children}
+      </body>
+    </html>
+  );
+}

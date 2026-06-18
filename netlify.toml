@@ -1,0 +1,11 @@
+# Netlify config for the Садовий квартал landing (Next.js 15, App Router).
+# The official plugin handles SSR, routing and next/image optimization.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"

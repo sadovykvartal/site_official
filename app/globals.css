@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+/*
+  Tenor Sans - фларований гуманістичний санс під логотип ЖК (той самий стиль, що в лого).
+  Локально розміщений (public/fonts), вага 400, з кирилицею (укр. і/ї/є/ґ).
+*/
+@font-face {
+  font-family: "Tenor Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/TenorSans-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Tenor Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/TenorSans-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0,
+    U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Tenor Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/TenorSans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+/*
+  ЖК Садовий квартал - дизайн-токени.
+  Значення звірені з оригіналом (research/SPEC_exact.md).
+  Палітра-прототип: тепла беж-золота гама. Легко замінити на фінальну.
+*/
+
+:root {
+  /* base */
+  --background: #ffffff;
+  --foreground: #15181c;
+
+  /* brand - зелена гама під логотип (#488060) */
+  --gold: #488060;          /* основний акцент (точний колір лого) */
+  --gold-soft: #8fb89e;     /* світлий зелений (картки hero, цифри) */
+  --brown: #355843;         /* темний зелений (hover, бейджі, бабли) */
+  --brown-bubble: #355843;
+
+  /* neutrals / surfaces */
+  --ink: #15181c;          /* headings */
+  --muted: #6e6e72;        /* body text */
+  --muted-2: #8a8a8f;
+  --line: #e8e8e8;         /* borders, dividers */
+  --beige-card: #eaf1ec;   /* "Високі стандарти" cards */
+  --gray-card: #f2f2f1;    /* apartment plan cards */
+  --badge-bg: #e8e8e8;     /* section badge bg */
+  --header-border: rgba(0, 0, 0, 0.1);
+
+  /* premium: дисплейний шрифт заголовків під логотип */
+  --font-head: "Tenor Sans", system-ui, sans-serif;
+
+  /* premium: темна гама (фінальний блок + футер) - глибокий лісовий під бренд */
+  --dark: #122a1f;
+  --dark-2: #0d2017;
+  --cream: #f3f0e8;
+  --cream-muted: rgba(243, 240, 232, 0.66);
+  --dark-line: rgba(243, 240, 232, 0.14);
+
+  /* premium: мʼякі тіні для глибини */
+  --shadow-card: 0 1px 2px rgba(16, 32, 24, 0.04), 0 12px 28px -16px rgba(16, 32, 24, 0.16);
+  --shadow-card-hover: 0 2px 6px rgba(16, 32, 24, 0.06), 0 24px 48px -20px rgba(16, 32, 24, 0.26);
+  --shadow-soft: 0 18px 48px -28px rgba(16, 32, 24, 0.4);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-brown: var(--brown);
+  --color-brown-bubble: var(--brown-bubble);
+
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-line: var(--line);
+  --color-beige-card: var(--beige-card);
+  --color-gray-card: var(--gray-card);
+  --color-badge-bg: var(--badge-bg);
+
+  --color-dark: var(--dark);
+  --color-dark-2: var(--dark-2);
+  --color-cream: var(--cream);
+
+  --font-sans: var(--font-fixel-text);
+  --font-display: var(--font-fixel-display);
+  --font-head: var(--font-head);
+
+  /* shared layout token - редакторський ритм (більше повітря) */
+  --spacing-section: 132px;
+}
+
+* {
+  border-color: var(--line);
+}
+
+/* responsive section rhythm: tighter on mobile, full on desktop */
+@media (max-width: 767px) {
+  :root {
+    --spacing-section: 72px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* utility: centered page container (original max-width 1580 / pad 40) */
+.container-sk {
+  width: 100%;
+  max-width: 1580px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-sk {
+    padding-inline: 2.5rem; /* 40px */
+  }
+}
+
+/* heading scale - дисплейний шрифт під логотип (Tenor Sans, фларований санс) */
+.h-display {
+  font-family: var(--font-head), system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+/* eyebrow: редакторський нумерований надпис (напр. «01 / Про проєкт») */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrow .eyebrow-num {
+  color: color-mix(in srgb, var(--ink) 40%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+.eyebrow .eyebrow-slash {
+  margin-inline: 0.55em;
+  color: color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+/* тонка hairline-лінія-роздільник під заголовком */
+.sk-rule {
+  display: block;
+  height: 1px;
+  width: 2.75rem;
+  background: var(--gold);
+}
+.sk-rule--center {
+  margin-inline: auto;
+}
+
+/* редакторська картка: тонка межа, без тіні, гострі кути; hover = межа золотіє */
+.sk-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  transition: border-color 0.35s ease, background-color 0.35s ease;
+}
+.sk-card:hover {
+  border-color: color-mix(in srgb, var(--gold) 55%, var(--line));
+}
+
+/* editorial-кнопки: uppercase, трекінг, гострі кути */
+.btn-solid,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.btn-solid {
+  background: var(--gold);
+  color: #fff;
+}
+.btn-solid:hover {
+  background: var(--brown);
+}
+.btn-ghost {
+  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  color: var(--ink);
+}
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* темна секція (фінальний «престижний» блок) */
+.section-dark {
+  background: var(--dark);
+  color: var(--cream);
+}
+.section-dark .h-display {
+  color: var(--cream);
+}
+.section-dark .eyebrow {
+  color: var(--gold-soft);
+}
+.section-dark .eyebrow-num {
+  color: rgba(243, 240, 232, 0.5);
+}
+.section-dark .eyebrow-slash {
+  color: rgba(243, 240, 232, 0.3);
+}
+.section-dark .sk-rule,
+.section-dark .sk-rule--center {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--gold-soft) 10%, transparent),
+    var(--gold-soft),
+    color-mix(in srgb, var(--gold-soft) 10%, transparent)
+  );
+}
+.section-dark .text-ink {
+  color: var(--cream);
+}
+.section-dark .text-muted {
+  color: var(--cream-muted);
+}
+.section-dark .border-line {
+  border-color: var(--dark-line);
+}
+
+/* fade-up reveal on scroll */
+@keyframes sk-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.is-visible {
+  animation: sk-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    animation: none;
+  }
+}
