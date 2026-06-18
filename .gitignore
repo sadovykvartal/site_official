@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# Важкі вихідні рендери (не потрібні в репо; використовуються оптимізовані копії в public/gallery та public/about)
+/public/render/
