@@ -28,7 +28,12 @@ export default function Hero() {
         {/* нижній блок */}
         <div className="mt-auto">
           <div className="max-w-3xl">
-            <h1 className="font-head text-[40px] font-normal leading-[1.05] text-white sm:text-7xl lg:text-[88px]">
+            {hero.tag && (
+              <span className="font-script -mb-1 block text-[34px] leading-tight text-gold-soft [text-shadow:0_2px_4px_rgba(0,0,0,0.9),0_4px_28px_rgba(0,0,0,0.8)] sm:-mb-2 sm:text-[46px] lg:text-[56px]">
+                {hero.tag}
+              </span>
+            )}
+            <h1 className="font-head text-[40px] font-normal leading-[1.05] text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.4),0_6px_30px_rgba(0,0,0,0.5)] sm:text-7xl lg:text-[88px]">
               {hero.title}
             </h1>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/80 sm:mt-6 sm:text-lg">

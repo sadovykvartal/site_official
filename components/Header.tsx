@@ -25,7 +25,7 @@ export default function Header() {
     >
       <div className="container-sk flex h-20 items-center justify-between gap-6">
         <a href="#top" aria-label={site.name} className="shrink-0">
-          <Logo />
+          <Logo className="h-8 w-auto sm:h-11" />
         </a>
 
         {/* desktop nav */}
