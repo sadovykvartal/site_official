@@ -5,6 +5,7 @@ import Image from "next/image";
 import SectionHead from "./SectionHead";
 import Reveal from "./Reveal";
 import { commercialSpace as c } from "@/lib/content";
+import { gtmEvent } from "@/lib/gtm";
 
 export default function Commercial() {
   const [zoom, setZoom] = useState(false);
@@ -33,7 +34,11 @@ export default function Commercial() {
 
           <p className="mt-6 text-sm leading-relaxed text-muted">{c.note}</p>
 
-          <a href="#sales" className="btn-solid mt-8">
+          <a
+            href="#sales"
+            onClick={() => gtmEvent("cta_click", { cta: "commercial", location: "commercial" })}
+            className="btn-solid mt-8"
+          >
             {c.cta}
           </a>
         </Reveal>

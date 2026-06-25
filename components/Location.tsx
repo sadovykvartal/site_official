@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
+import TrackedLink from "./TrackedLink";
 import { location, site } from "@/lib/content";
 import { Icon, type IconName } from "@/lib/icons";
 
@@ -22,15 +23,17 @@ export default function Location() {
               allowFullScreen
             />
           </div>
-          <a
+          <TrackedLink
             href={site.mapUrl}
             target="_blank"
             rel="noopener noreferrer"
+            event="map_click"
+            eventParams={{ location: "location" }}
             className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
           >
             {location.mapCta}
             <span aria-hidden>→</span>
-          </a>
+          </TrackedLink>
         </Reveal>
 
         {/* список зручностей */}

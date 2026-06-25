@@ -5,6 +5,7 @@ import Image from "next/image";
 import SectionHead from "./SectionHead";
 import Reveal from "./Reveal";
 import { apartments } from "@/lib/content";
+import { gtmEvent } from "@/lib/gtm";
 
 const TYPE_ORDER = ["studio", "1", "2", "3"];
 
@@ -59,7 +60,10 @@ export default function Apartments() {
           >
             <button
               type="button"
-              onClick={() => setActive(apartments.plans.indexOf(p))}
+              onClick={() => {
+                gtmEvent("plan_view", { plan: p.label, area: p.area, type: p.type });
+                setActive(apartments.plans.indexOf(p));
+              }}
               className="relative aspect-square w-full bg-gray-card transition-colors hover:bg-beige-card"
               aria-label={`Збільшити планування ${p.label}, ${p.area} м²`}
             >

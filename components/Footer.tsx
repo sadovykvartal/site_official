@@ -1,4 +1,5 @@
 import Logo from "./Logo";
+import TrackedLink from "./TrackedLink";
 import { site, documents } from "@/lib/content";
 
 function FbIcon() {
@@ -48,16 +49,18 @@ export default function Footer() {
             Документи та дозволи
           </span>
           {documents.items.map((d) => (
-            <a
+            <TrackedLink
               key={d.file}
               href={d.file}
               target="_blank"
               rel="noopener noreferrer"
+              event="document_view"
+              eventParams={{ document: d.short ?? d.title }}
               className="inline-flex items-center gap-1.5 text-cream/70 transition-colors hover:text-gold-soft"
             >
               {d.short ?? d.title}
               <span aria-hidden className="text-cream/40">↗</span>
-            </a>
+            </TrackedLink>
           ))}
           <span className="mt-2 text-xs text-cream/45">
             © {site.name}. Усі права захищені.

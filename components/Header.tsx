@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { nav, site } from "@/lib/content";
+import { gtmEvent } from "@/lib/gtm";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -46,12 +47,14 @@ export default function Header() {
         <div className="hidden shrink-0 items-center gap-5 xl:flex">
           <a
             href={site.phoneHref}
+            onClick={() => gtmEvent("phone_click", { location: "header" })}
             className="whitespace-nowrap text-[13px] font-semibold text-ink transition-colors hover:text-gold"
           >
             {site.phone}
           </a>
           <a
             href="#sales"
+            onClick={() => gtmEvent("cta_click", { cta: "consultation", location: "header" })}
             className="whitespace-nowrap bg-gold px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-brown"
           >
             Отримати консультацію
@@ -105,13 +108,17 @@ export default function Header() {
           ))}
           <a
             href={site.phoneHref}
+            onClick={() => gtmEvent("phone_click", { location: "menu" })}
             className="py-3 text-base font-bold text-ink"
           >
             {site.phone}
           </a>
           <a
             href="#sales"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              gtmEvent("cta_click", { cta: "consultation", location: "menu" });
+              setOpen(false);
+            }}
             className="mt-2 bg-gold px-5 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
           >
             Отримати консультацію

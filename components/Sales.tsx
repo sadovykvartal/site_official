@@ -4,6 +4,7 @@ import { useState } from "react";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 import { sales, site } from "@/lib/content";
+import { gtmEvent } from "@/lib/gtm";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -34,6 +35,7 @@ export default function Sales() {
       const data = await res.json();
       if (!data.success) throw new Error(data.message || "submit failed");
       setStatus("sent");
+      gtmEvent("generate_lead", { form: "consultation", location: "sales" });
     } catch {
       setStatus("error");
     }
@@ -66,15 +68,24 @@ export default function Sales() {
               href={site.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => gtmEvent("map_click", { location: "sales" })}
               className="inline-flex items-center gap-1.5 font-semibold text-gold hover:opacity-80"
             >
               {sales.mapCta}
               <span aria-hidden>→</span>
             </a>
-            <a href={site.phoneHref} className="block pt-2 font-bold text-ink hover:text-gold">
+            <a
+              href={site.phoneHref}
+              onClick={() => gtmEvent("phone_click", { location: "sales" })}
+              className="block pt-2 font-bold text-ink hover:text-gold"
+            >
               {site.phone}
             </a>
-            <a href={`mailto:${site.email}`} className="block text-ink/85 hover:text-gold">
+            <a
+              href={`mailto:${site.email}`}
+              onClick={() => gtmEvent("email_click", { location: "sales" })}
+              className="block text-ink/85 hover:text-gold"
+            >
               {site.email}
             </a>
           </div>

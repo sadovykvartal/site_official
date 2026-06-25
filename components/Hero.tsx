@@ -1,4 +1,5 @@
 import Placeholder from "./Placeholder";
+import TrackedLink from "./TrackedLink";
 import { hero } from "@/lib/content";
 
 export default function Hero() {
@@ -42,21 +43,25 @@ export default function Hero() {
 
             {/* стримані дії */}
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4 sm:mt-10 sm:gap-x-8 sm:gap-y-5">
-              <a
+              <TrackedLink
                 href="#sales"
+                event="cta_click"
+                eventParams={{ cta: "consultation", location: "hero" }}
                 className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-white hover:text-ink sm:px-8 sm:py-4"
               >
                 {hero.ctaPrimary}
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>
-              </a>
-              <a
+              </TrackedLink>
+              <TrackedLink
                 href="#apartments"
+                event="cta_click"
+                eventParams={{ cta: "view_plans", location: "hero" }}
                 className="text-xs font-medium uppercase tracking-[0.2em] text-white/85 underline-offset-8 transition-colors hover:text-white hover:underline"
               >
                 {hero.ctaSecondary}
-              </a>
+              </TrackedLink>
             </div>
           </div>
 
