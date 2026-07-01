@@ -16,8 +16,10 @@ export const site = {
   mapUrl: "https://maps.app.goo.gl/iKxiFSeYb64efWx8A",
   mapEmbed: "https://maps.google.com/maps?q=48.6189486,22.2403149&z=16&hl=uk&output=embed",
   social: {
-    facebook: "#",
-    instagram: "#",
+    facebook: "https://www.facebook.com/profile.php?id=61590989503048&locale=uk_UA",
+    instagram: "https://www.instagram.com/sadovyi_kvartal",
+    youtube: "https://youtube.com/@sadovyikvartal",
+    tiktok: "https://www.tiktok.com/@sadovyi.kvartal",
   },
 };
 

@@ -18,8 +18,29 @@ function IgIcon() {
     </svg>
   );
 }
+function YtIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.7-1.8C19.3 5 12 5 12 5s-7.3 0-8.9.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.7 1.8C4.7 19 12 19 12 19s7.3 0 8.9-.5a2.5 2.5 0 0 0 1.7-1.8C23 15.2 23 12 23 12ZM9.8 15.3V8.7l6 3.3-6 3.3Z" />
+    </svg>
+  );
+}
+function TtIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16.5 3c.28 2.02 1.5 3.62 3.5 4.02V9.6c-1.3 0-2.55-.4-3.7-1.1v5.86A5.68 5.68 0 1 1 10.6 8.7c.3 0 .6.02.9.07v2.77a2.9 2.9 0 1 0 2 2.76V3h3Z" />
+    </svg>
+  );
+}
 
 export default function Footer() {
+  const socials = [
+    { label: "Facebook", href: site.social.facebook, Icon: FbIcon },
+    { label: "Instagram", href: site.social.instagram, Icon: IgIcon },
+    { label: "YouTube", href: site.social.youtube, Icon: YtIcon },
+    { label: "TikTok", href: site.social.tiktok, Icon: TtIcon },
+  ].filter((s) => s.href && s.href !== "#");
+
   return (
     <footer className="bg-dark-2 text-cream">
       <div className="container-sk flex flex-col items-center gap-8 py-14 sm:flex-row sm:justify-between">
@@ -27,22 +48,24 @@ export default function Footer() {
           <Logo />
         </div>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={site.social.facebook}
-            aria-label="Facebook"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-cream/80 transition-colors hover:border-gold-soft hover:text-gold-soft"
-          >
-            <FbIcon />
-          </a>
-          <a
-            href={site.social.instagram}
-            aria-label="Instagram"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-cream/80 transition-colors hover:border-gold-soft hover:text-gold-soft"
-          >
-            <IgIcon />
-          </a>
-        </div>
+        {socials.length > 0 && (
+          <div className="flex items-center gap-3">
+            {socials.map(({ label, href, Icon }) => (
+              <TrackedLink
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                event="social_click"
+                eventParams={{ network: label }}
+                aria-label={label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-cream/80 transition-colors hover:border-gold-soft hover:text-gold-soft"
+              >
+                <Icon />
+              </TrackedLink>
+            ))}
+          </div>
+        )}
 
         <div className="flex flex-col items-center gap-2.5 text-sm sm:items-end">
           <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cream/45">

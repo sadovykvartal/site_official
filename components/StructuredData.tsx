@@ -19,6 +19,13 @@ const geo = {
   longitude: site.geo.lng,
 };
 
+const sameAs = [
+  site.social.facebook,
+  site.social.instagram,
+  site.social.youtube,
+  site.social.tiktok,
+].filter((u) => u && u !== "#");
+
 const graph = {
   "@context": "https://schema.org",
   "@graph": [
@@ -31,6 +38,7 @@ const graph = {
       image: `${site.url}/og.jpg`,
       telephone: phone,
       email: site.email,
+      sameAs,
     },
     {
       "@type": "WebSite",
